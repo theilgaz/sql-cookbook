@@ -1,4 +1,5 @@
-	DECLARE @sql nvarchar(max); 
+	-- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
+    DECLARE @sql nvarchar(max); 
 	SELECT @sql = 'INSERT INTO [SCHEMA_NAME.TABLE_NAME] (' +
     STUFF ((
         SELECT '', '[' + name + ']'
