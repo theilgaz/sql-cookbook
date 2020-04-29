@@ -1,4 +1,7 @@
-	-- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
+-- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
+-- Output: Gives you an insert query for desired table.
+-- Sample: insert into Schema.Table (Column1, Column2) values (@Column1, @Column2);
+
     DECLARE @sql nvarchar(max); 
 	SELECT @sql = 'INSERT INTO [SCHEMA_NAME.TABLE_NAME] (' +
     STUFF ((
