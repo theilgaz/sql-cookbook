@@ -1,4 +1,7 @@
 -- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
+-- Output: Gives you a list of fields as prepared prop for C# poco class.
+-- Sample: public int Id { get; set; }
+
 select 'public ' + ColumnType + NullableSign + ' ' + ColumnName + ' { get; set; } ' as Prop from
    ( select replace(col.name, ' ', '_') ColumnName, column_id ColumnId, case typ.name when 'bigint' then 'long' when 'binary' then 'byte[]' 
      when 'bit' then 'bool' when 'char' then 'string'  when 'date' then 'DateTime' when 'datetime' then 'DateTime'
