@@ -1,4 +1,7 @@
 -- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
+-- Output: Gives you a list of mapping fields with HasColumnName for Entity Framework Mapping.
+-- Sample: this.Property(x=> x.Col1).HasColumnName("Col1");
+
 select'this.Property(x => x.' + ColumnName + ').HasColumnName("'+ColumnName+'");' as Prop  from
    ( select replace(col.name, ' ', '_') ColumnName, column_id ColumnId, case typ.name when 'bigint' then 'long' when 'binary' then 'byte[]' 
      when 'bit' then 'bool' when 'char' then 'string'  when 'date' then 'DateTime' when 'datetime' then 'DateTime'
