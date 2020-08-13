@@ -1,6 +1,6 @@
 -- Author: Abdullah ILGAZ, abdullah@entegreyazilim.com.tr
 -- Output: Gives you a list of fields as prepared prop with getter and setter from Base Entity for C# poco class.
--- Sample: public int Id { get; set; }
+-- Sample: public int Id { get { return Entity.Id; } set { Entity.Id = value; } } 
 
 select 'public ' + ColumnType + ' ' + ColumnName + ' { get { return Entity.'+ColumnName+'; } set { Entity.'+ColumnName+' = value; } } ' as Prop from
    ( select replace(col.name, ' ', '_') ColumnName, column_id ColumnId, case typ.name when 'bigint' then 'long' when 'binary' then 'byte[]' 
@@ -13,4 +13,4 @@ select 'public ' + ColumnType + ' ' + ColumnName + ' { get { return Entity.'+Col
      else 'UNKNOWN_' + typ.name end ColumnType, case 
    when col.is_nullable = 1 and typ.name in ('bigint', 'bit', 'date', 'datetime', 'datetime2', 'datetimeoffset', 'decimal', 'float', 'int', 'money', 'numeric', 'real', 'smalldatetime', 'smallint', 'smallmoney', 'time', 'tinyint', 'uniqueidentifier')
      then '?' else '' end NullableSign from sys.columns col join sys.types typ on
-     col.system_type_id = typ.system_type_id AND col.user_type_id = typ.user_type_id where object_id = object_id('APP.Country')) t order by ColumnId
+     col.system_type_id = typ.system_type_id AND col.user_type_id = typ.user_type_id where object_id = object_id('SCHEMA.TABLE')) t order by ColumnId
